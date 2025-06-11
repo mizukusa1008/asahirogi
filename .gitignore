@@ -1,0 +1,20 @@
+# IDE and OS files
+.DS_Store
+.vscode/
+.idea/
+*.swp
+*~
+
+# 環境依存ファイル
+.env
+*.log
+
+# 依存関係ディレクトリ
+node_modules/
+venv/
+__pycache__/
+
+# ビルド成果物
+build/
+dist/
+*.compiled

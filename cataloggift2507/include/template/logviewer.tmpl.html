@@ -1,0 +1,105 @@
+<patTemplate:tmpl name="_contents">
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="{TEML_CHARSET}">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1" />
+<meta name="format-detection" content = "telephone=no" />
+
+<title>登録データ確認ページ</title>
+<script src="../../js/jquery-1.12.2.min.js"></script>
+<!-- <script src="../../js/moment.min.js"></script>
+<script src="../../js/moment-with-locales.js"></script> -->
+<!-- <script src="../../js/page/logviewer.js?v=170303"></script> -->
+<link rel="stylesheet" href="../../css/style.css" />
+<link rel="stylesheet" href="../../css/style_sp.css" />
+<link rel="stylesheet" href="../../css/page_logviewer.css?v=240614a" />
+
+<style>
+
+</style>
+<script>
+window.onload = function() {
+	document.body.style.overflow = 'visible';
+}
+</script>
+</head>
+
+<body class="page_logviewer">
+<div class="contents">
+<div class="wrapper">
+
+<noscript>
+	<!-- <div class="block" style="text-align:center;background:#FFFF00;">
+		<b style="color:#FF0000;font-size:16px;">※※※ javascriptを有効にしてください。※※※</b>
+	</div> -->
+</noscript>
+
+<div class="block_wrap">
+<div class="block block_header">
+	{HEADER_TITLE} 確認画面
+</div>
+</div>
+
+<div class="block_rule_text">
+	<h2>
+		<p>期間：{PERIOD}</p>
+		総件数：{TOTAL_COUNT}件
+		<p>{CATEGORY_COUNT}</p>
+		<p>{NOW_TXT}(現在)</p>
+	</h2>
+</div>
+
+<div class="block">
+	<h1 class="midasi_a">TUBAKI 申込み商品件数</h1>
+</div>
+<div class="block tables">
+<table class="total_table himawari">
+	{HIMAWARI_TOTAL_HTML}
+</table>
+</div>
+
+<div class="block">
+	<h1 class="midasi_a">YUZU 申込み商品件数</h1>
+</div>
+<div class="block tables">
+<table class="total_table ajisai">
+	{AJISAI_TOTAL_HTML}
+</table>
+</div>
+
+<div class="block">
+	<h1 class="midasi_a">カタログギフト 申込み商品件数</h1>
+</div>
+<div class="block tables" id="catalog_table">
+<table class="total_table catalog">
+	{CATALOG_TOTAL_HTML}
+</table>
+</div>
+
+<div class="block">
+	<h1 class="midasi_a">申込み情報一覧</h1>
+</div>
+
+<div class="block tbl_wrap">
+	<table class="data_table">
+		<tr>
+			<th>No.</th>
+			<th>申込み日時</th>
+			<th>カタログ</th>
+			<th>受付番号</th>
+			<th>商品</th>
+			<!-- <th>ID<br>正誤</th> -->
+			<th>配達希望日</th>
+		</tr>
+{TABLE_HTML}
+	</table>
+
+
+</div>
+</div>
+</div>
+</body>
+</html>
+</patTemplate:tmpl>

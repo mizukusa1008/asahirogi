@@ -1,1 +1,2 @@
 # Asahirogi Project
+管理画面をClaudeCodeに作成させるテスト

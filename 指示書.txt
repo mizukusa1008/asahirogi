@@ -1,0 +1,11 @@
+前提条件
+1.PHPのPattemplateを使用したWEBページ。
+2.api_***フォルダは別のDBサーバにある。
+3.cataloggift2507はWebサーバーにある。
+4.基本的な動きはlobwiewer.phpを参考にして。
+5.DB情報.sqlにDBの情報がある。
+作成してほしい物
+DBからentry_ts,receipt_num,user_id,c_itemを取得して、choiceListフォルダにあるCSVファイルから商品名＝c_item、店名=user_idを表示
+一覧表示するWEBページを作成して
+絞り込みとして、期間絞り込み機能と店舗絞り込み機能をつけて。
+最後に、変更したファイル、新規作成したファイルを書き出して。
