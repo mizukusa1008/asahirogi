@@ -141,6 +141,51 @@ class modelEllenaCatalogGift2507
 	}
 
 	/**
+	 * 管理画面用データ出力
+	 */
+	public function execAdminData()
+	{
+		$rows = array();
+		$arrSearch = array();
+
+		// フィルター条件を取得
+		$dateFrom = isset($_POST['date_from']) ? $_POST['date_from'] : '';
+		$dateTo = isset($_POST['date_to']) ? $_POST['date_to'] : '';
+		$shopId = isset($_POST['shop_id']) ? $_POST['shop_id'] : '';
+
+		$queryStr = "SELECT entry_ts, receipt_num, user_id, c_item FROM " . DB_TABLE . " WHERE is_del = 0";
+
+		// 日付範囲フィルター
+		if (!empty($dateFrom)) {
+			$queryStr .= " AND entry_ts >= ?";
+			array_push($arrSearch, $dateFrom . " 00:00:00");
+		}
+		if (!empty($dateTo)) {
+			$queryStr .= " AND entry_ts <= ?";
+			array_push($arrSearch, $dateTo . " 23:59:59");
+		}
+
+		// 店舗フィルター
+		if (!empty($shopId)) {
+			$queryStr .= " AND user_id = ?";
+			array_push($arrSearch, $shopId);
+		}
+
+		$queryStr .= " ORDER BY entry_ts DESC";
+
+		$ret = $this->db->selectRecords($queryStr, $arrSearch, $rows);
+
+		// 結果を返す
+		$output = array(
+			'total_count' => count($rows),
+			'data' => $rows
+		);
+		
+		header("Content-Type: application/json; charset=utf-8");
+		echo json_encode($output, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+	}
+
+	/**
 	 * DB登録処理
 	 */
 	private function _regist()

@@ -1,0 +1,32 @@
+【新規作成ファイル】
+
+1. /home/mizukusa/form/asahirogi/cataloggift2507/admin.php
+   - 管理画面表示用のPHPファイル
+   - DBからデータを取得して表示する
+   - 期間と店舗での絞り込み機能を実装
+
+2. /home/mizukusa/form/asahirogi/api_cataloggift2507/apiAdminData.php
+   - 管理画面用のAPIエンドポイントファイル
+   - フィルター条件に基づいてDBからデータを取得
+
+3. /home/mizukusa/form/asahirogi/cataloggift2507/include/template/admin.tmpl.html
+   - 管理画面用のHTMLテンプレート
+   - 期間と店舗による絞り込み条件入力フォームを含む
+   - データを表形式で表示するテーブル部分
+
+4. /home/mizukusa/form/asahirogi/cataloggift2507/js/page/admin.js
+   - 管理画面用のJavaScriptファイル
+   - 日付入力欄のデフォルト値設定などの機能
+
+【更新したファイル】
+
+1. /home/mizukusa/form/asahirogi/api_cataloggift2507/include/modelEllenaCatalogGift2507.php
+   - 管理画面用の `execAdminData()` メソッドを追加
+   - DBからデータを取得して期間と店舗でフィルタリングする機能を実装
+
+【動作概要】
+1. admin.phpにアクセスするとログイン画面が表示される（logviewer.phpと同じ認証）
+2. ログイン後、管理画面が表示される
+3. GETパラメータで期間（開始日・終了日）と店舗を指定できる
+4. 条件に合致するDBデータが一覧表示される
+5. DBからentry_ts, receipt_num, user_id, c_itemを取得し、CSV情報と組み合わせて表示
