@@ -6,6 +6,9 @@
 5.DB情報.sqlにDBの情報がある。
 作成してほしい物
 DBからentry_ts,receipt_num,user_id,c_itemを取得して、choiceListフォルダにあるCSVファイルから商品名＝c_item、店名=user_idを表示
+c_type=catalogのレコードで絞り込んで。
+
 一覧表示するWEBページを作成して
 絞り込みとして、期間絞り込み機能と店舗絞り込み機能をつけて。
 最後に、変更したファイル、新規作成したファイルを書き出して。
+DBからすべての情報を取得して、Javascriptで動的に絞り込み情報を表示して
