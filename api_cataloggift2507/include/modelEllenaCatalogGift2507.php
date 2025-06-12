@@ -141,6 +141,31 @@ class modelEllenaCatalogGift2507
 	}
 
 	/**
+	 * 管理画面用全データ出力
+	 * JavaScript側で絞り込み処理を行うため全データを返す
+	 */
+	public function execAdminDataAll()
+	{
+		$rows = array();
+		$arrSearch = array();
+
+		// c_type=catalogのレコードのみを取得
+		$queryStr = "SELECT entry_ts, receipt_num, user_id, c_item FROM " . DB_TABLE . " WHERE is_del = 0 AND c_type = 'catalog'";
+		$queryStr .= " ORDER BY entry_ts DESC";
+
+		$ret = $this->db->selectRecords($queryStr, $arrSearch, $rows);
+
+		// 結果を返す
+		$output = array(
+			'total_count' => count($rows),
+			'data' => $rows
+		);
+		
+		header("Content-Type: application/json; charset=utf-8");
+		echo json_encode($output, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+	}
+
+	/**
 	 * DB登録処理
 	 */
 	private function _regist()

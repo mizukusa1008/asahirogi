@@ -1,0 +1,46 @@
+【新規作成ファイル】
+
+1. /home/mizukusa/form/asahirogi/cataloggift2507/admin.php
+   - 管理画面の主要PHPファイル
+   - ユーザー認証・テンプレート読み込み・店舗データ設定
+
+2. /home/mizukusa/form/asahirogi/api_cataloggift2507/apiAdminData.php
+   - APIエンドポイント。c_type=catalogのデータを取得
+
+3. /home/mizukusa/form/asahirogi/cataloggift2507/include/template/admin.tmpl.html
+   - 管理画面のHTMLテンプレート
+   - JavaScriptによる動的データ表示に対応した構造
+
+4. /home/mizukusa/form/asahirogi/cataloggift2507/js/page/admin.js
+   - クライアントサイド処理のためのJavaScript
+   - API呼び出し・データフィルタリング・画面表示処理
+
+【変更ファイル】
+
+1. /home/mizukusa/form/asahirogi/api_cataloggift2507/include/modelEllenaCatalogGift2507.php
+   - execAdminDataAll() メソッドを追加
+   - c_type=catalogの条件でデータ取得するAPI機能を実装
+
+【機能概要】
+
+1. データ取得:
+   - API側でc_type=catalogの条件でデータ取得
+   - entry_ts, receipt_num, user_id, c_itemフィールドのみ取得
+
+2. 画面表示:
+   - PHPでテンプレート表示の基本処理
+   - JavaScriptで動的にデータを読み込み・表示
+
+3. フィルタリング機能:
+   - 日付範囲 (開始日・終了日) での絞り込み
+   - 店舗IDでの絞り込み
+   - 全てクライアントサイドJavaScriptで実装
+
+4. データ連携:
+   - CSVファイルから商品名と店舗名を取得・マッピング
+   - JavaScriptでJSONデータとCSVデータを紐づけて表示
+
+5. ユーザー認証:
+   - logviewer.phpと同じダイジェスト認証を利用
+   - ユーザー名: ellena
+   - パスワード: CatalogGift2507

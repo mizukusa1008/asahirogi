@@ -1,0 +1,80 @@
+# エレナギフト管理システム - 環境構成説明
+
+## フォルダ構成とデプロイ方法
+
+このアプリケーションは2つの主要コンポーネントで構成されています：
+
+1. **Webサーバー側（cataloggift2507）**
+   - HTMLテンプレート、CSS、JavaScript、および基本的なPHPロジックが含まれます
+   - ユーザーインターフェイス部分を担当します
+
+2. **DBサーバー側（api_cataloggift2507）**
+   - データベース接続とデータ取得のためのAPIコードが含まれます
+   - バックエンド処理を担当します
+
+## 環境設定
+
+システムは`config.php`内の`SITE_STAGE`設定に基づいて動作します：
+- `dev`: 開発環境（ローカル開発用）
+- `prd`: 本番環境（実サーバー展開用）
+
+```php
+// config.php内の設定
+define('SITE_STAGE', 'dev'); // 'prd'または'dev'
+```
+
+## デプロイ手順
+
+### 1. 開発環境（ローカル）でのテスト
+
+開発環境ではすべてのファイルを同一サーバー上で動かすことができます：
+
+```
+/form/
+  ├── asahirogi/
+  │   ├── cataloggift2507/    <- Webサーバー部分
+  │   └── api_cataloggift2507/ <- DBサーバー部分
+  └── ...
+```
+
+### 2. 本番環境へのデプロイ
+
+1. **Webサーバーへの設置**
+   - `cataloggift2507/`フォルダ全体をWebサーバーの適切な場所にアップロード
+   - `config.php`内の`SITE_STAGE`を`prd`に変更
+
+2. **DBサーバーへの設置**
+   - `api_cataloggift2507/`フォルダをDBサーバーの適切な場所にアップロード
+   - DB接続設定が正しいことを確認
+
+本番環境では、以下の構成になります：
+- Webサーバー: `(Webサーバーパス)/cataloggift2507/`
+- DBサーバー: `http://192.168.21.70/ellena/api_cataloggift2507/`
+
+## 環境固有の動作
+
+### JavaScript API接続
+
+管理画面の`admin.js`は環境に応じて自動的にAPIエンドポイントを切り替えます：
+
+- 開発環境では相対パス: `../api_cataloggift2507/apiAdminData.php`
+- 本番環境では絶対パス: `http://192.168.21.70/ellena/api_cataloggift2507/apiAdminData.php`
+
+この切り替えは、`admin.php`から挿入される隠しフィールドの値に基づいて行われます：
+
+```html
+<input type="hidden" id="site_stage" value="dev">
+<input type="hidden" id="api_url" value="...">
+```
+
+## テスト方法
+
+1. ローカル環境で、`SITE_STAGE`を`dev`に設定し、動作確認
+2. ローカル環境で、`SITE_STAGE`を`prd`に変更し、API URLが正しく切り替わることを確認
+3. 本番環境でデプロイ後、正しく動作することを確認
+
+## 注意事項
+
+- `admin.php`内の`$folderName`変数はグローバル変数として取得しています
+- APIエンドポイントのURLは環境変数に基づいて動的に構築されます
+- CSS、JavaScript、画像などの静的ファイルはWebサーバー側にのみ配置されます
